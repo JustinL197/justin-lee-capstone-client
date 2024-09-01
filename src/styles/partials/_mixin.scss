@@ -1,0 +1,19 @@
+// Font-weights
+$regular: 400;
+$demi: 600;
+
+// Breakpoints
+$tablet-bp: 768px;
+$desktop-bp: 1280px;
+
+@mixin tablet {
+  @media screen and (min-width: $tablet-bp) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-bp) {
+    @content;
+  }
+}
