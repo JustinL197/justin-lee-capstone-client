@@ -1,0 +1,32 @@
+.dashboard{
+    margin-top: -32px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__navbar{
+        display: flex;
+        gap: 40px;
+        border-bottom: 3px solid #f5f5f5;
+        width: 100%;
+        justify-content: center;
+        padding-top: 16px;
+        padding-bottom: 4px;
+    }
+
+    &__links{
+        font-size: 14px;
+        color: #8E8E93;
+        text-decoration: none;
+        font-weight: 600;
+
+        &.active{
+            color: #346DFF;
+            border-bottom: 3px solid #346DFF;
+            margin-bottom: -5px;
+        }
+    }
+}

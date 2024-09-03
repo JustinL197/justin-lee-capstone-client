@@ -8,27 +8,32 @@ import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
 import ProtectedRoute from './components/ProtectedRoutes/ProtectedRoutes';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [firstName, setFirstName] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const storedFirstName = localStorage.getItem('firstName')
     if (token) {
       setIsAuthenticated(true);
+      if (storedFirstName){
+        setFirstName(storedFirstName);
+      }
     }
   }, []);
 
   return (
     <Router>
-      <Header />
+      <Header isAuthenticated={isAuthenticated} firstName={firstName}/>
       <Routes>
         <Route
           path="/"
           element={
             isAuthenticated ? (
-              <Navigate to="/dashboard" replace />
+              <Navigate to="/dashboard/announcements" replace />
             ) : (
               <Login setIsAuthenticated={setIsAuthenticated} />
             )
@@ -38,7 +43,7 @@ function App() {
           path="/login"
           element={
             isAuthenticated ? (
-              <Navigate to="/dashboard" replace />
+              <Navigate to="/dashboard/announcements" replace />
             ) : (
               <Login setIsAuthenticated={setIsAuthenticated} />
             )
@@ -48,7 +53,7 @@ function App() {
 
         {/* Use ProtectedRoute component */}
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-          <Route path="/dashboard" element={<Dashboard setIsAuthenticated={setIsAuthenticated}/>} />
+          <Route path="/dashboard/*" element={<Dashboard setIsAuthenticated={setIsAuthenticated}/>} />
         </Route>
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

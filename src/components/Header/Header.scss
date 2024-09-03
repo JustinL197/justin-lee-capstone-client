@@ -1,14 +1,60 @@
 .header{
     background: linear-gradient(180deg, #3f71ef 0%, #94d8e3 100%);
-    height: 25vh;
-    display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-left: 32px;
+    padding: 0 32px;
+
+    &--unauthenticated{
+        height: 25vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    &--authenticated{
+        height: 32vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 0;
+    }   
+    
 
     &__logo{
         width: 300px;
         margin-left: -85px;
         margin-bottom: 50px;
+    }
+
+    &__sub-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__profile-section-container{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+
+    }
+
+    &__icons-container{
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    &__avatar{
+        background-color: grey;
+        border-radius: 50%;
+        height: 64px;
+        width: 64px;
+    }
+    
+    &__greeting-message{
+        font-size: 20px;
+        margin: 0;
+        color: white;
+        font-weight: 700;
     }
 }
