@@ -1,27 +1,37 @@
-// src/components/Announcements.jsx
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import AnnouncementCard from '../AnnouncementCard/AnnouncementCard';
 
 const Announcements = () => {
+  const [announcements, setAnnouncements] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        
+        const response = await axios.get('http://localhost:5050/announcements', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setAnnouncements(response.data);
+      } catch (error) {
+        console.error('Error fetching announcements:', error);
+        setError('Failed to fetch announcements');
+      }
+    };
+
+    fetchAnnouncements();
+  }, []);
+
   return (
-    <div>
-      <ul>
-        <li>
-          <h3>Announcement 1</h3>
-          <p>This is a placeholder for the first announcement.</p>
-          <p>Date: 2024-09-02</p>
-        </li>
-        <li>
-          <h3>Announcement 2</h3>
-          <p>This is a placeholder for the second announcement.</p>
-          <p>Date: 2024-09-01</p>
-        </li>
-        <li>
-          <h3>Announcement 3</h3>
-          <p>This is a placeholder for the third announcement.</p>
-          <p>Date: 2024-08-31</p>
-        </li>
-      </ul>
+    <div className="announcements-container">
+      {error && <p className="error-message">{error}</p>}
+      {announcements.map((announcement) => (
+        <AnnouncementCard key={announcement.id} announcement={announcement} />
+      ))}
     </div>
   );
 };
