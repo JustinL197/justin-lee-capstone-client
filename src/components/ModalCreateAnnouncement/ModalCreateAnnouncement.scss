@@ -40,10 +40,10 @@
       input,
       textarea {
         width: 100%;
-        padding: 8px;
+        padding: 10px;
         border: 1px solid #ccc;
         border-radius: 20px;
-        font-size: 14px;
+        font-size: 12px;
         box-sizing: border-box;
       }
   
@@ -58,7 +58,7 @@
         cursor: pointer;
 
         &:hover {
-            opacity: 0.8; 
+            opacity: 1; 
           }
     }
 
