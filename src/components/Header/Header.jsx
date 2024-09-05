@@ -5,7 +5,6 @@ import notificationIcon from '../../assets/icons/notification.svg';
 import menuIcon from '../../assets/icons/menu.svg';
 import { useState } from "react";
 
-// A utility function to determine the greeting based on the current time
 const getTimeOfDayGreeting = () => {
   const currentHour = new Date().getHours();
   if (currentHour < 12) {

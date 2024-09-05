@@ -15,15 +15,9 @@ const LoginPage = ({ setIsAuthenticated }) => {
     try {
       const response = await axios.post('http://localhost:5050/users/signin', { username, password });
 
-      // Store token in localStorage
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('firstName', response.data.user.first_name)
-
-      // Set user as authenticated
       setIsAuthenticated(true);
-
-      // Optionally, save user info in state or context
-      console.log(response.data.user);
 
     } catch (err) {
       setError(err.response.data.error || 'An error occurred during login.');
