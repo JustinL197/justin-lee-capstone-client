@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 
-const AnnouncementCard = ({ announcement }) => {
+const AnnouncementCard = ({ announcement, onClick}) => {
   const { id, topic, created_at, vote_count, title, preview } = announcement;
   const [currentVotes, setCurrentVotes] = useState(vote_count || 0);
   const [voteStatus, setVoteStatus] = useState(null);
@@ -77,7 +77,7 @@ const AnnouncementCard = ({ announcement }) => {
   };
 
   return (
-    <div className="announcement-card">
+    <div className="announcement-card" onClick={onClick}>
       <div className="announcement-card__topic-time-container">
         <div className="announcement-card__avatar-topic-container">
           <div className="announcement-card__avatar"></div>
@@ -93,7 +93,10 @@ const AnnouncementCard = ({ announcement }) => {
             viewBox="0 -960 960 960"
             width="24px"
             className={`upIcon ${voteStatus === 'upvoted' ? 'active-upvote' : ''}`}
-            onClick={handleUpvote}
+            onClick={(event) => {
+              event.stopPropagation();
+              handleUpvote();
+            }}
             style={{ cursor: 'pointer' }}
           >
             <path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/>
@@ -105,7 +108,10 @@ const AnnouncementCard = ({ announcement }) => {
             viewBox="0 -960 960 960"
             width="24px"
             className={`downIcon ${voteStatus === 'downvoted' ? 'active-downvote' : ''}`}
-            onClick={handleDownvote}
+            onClick={(event) => {
+              event.stopPropagation();
+              handleDownvote();
+            }}
             style={{ cursor: 'pointer' }}
           >
             <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
