@@ -1,0 +1,73 @@
+.side-panel {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Move off-screen initially */
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease; /* Smooth slide-in effect */
+    padding: 20px;
+    z-index: 2000;
+    overflow-y: auto;
+  
+    /* When the side-panel--open class is added, move it into view */
+    &--open {
+      right: 0; /* Slide in from the right */
+    }
+  
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    &__back-icon {
+      cursor: pointer;
+      width: 24px; /* Adjust the size */
+      height: 24px;
+      margin-right: 10px;
+    }
+  
+    &__settings-icon {
+      cursor: pointer;
+      width: 24px; /* Adjust the size */
+      height: 24px;
+    }
+  
+    &__content {
+      margin-top: 20px;
+    }
+  
+    &__logout-btn {
+      margin-top: 650px;
+      background-color: #f44336;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .my-group{
+    &__group-name--sidepanel{
+        font-size: 12px;
+    }
+
+    &__timestamp--sidepanel{
+        font-size: 10px;
+    }
+
+    &__header--sidepanel{
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+
+    &__button--sidepanel{
+        align-self: center;
+        margin-left: 18%;
+        width: 200px;
+
+    }
+  }
