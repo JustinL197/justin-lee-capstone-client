@@ -57,6 +57,10 @@
         color: white;
         font-weight: 700;
     }
+    
+    &__icon{
+        cursor: pointer;
+    }
 }
 
 .header__profile-page {
@@ -104,4 +108,8 @@
 width: 20px;
 height: 20px;
 margin-right: 5px;
+}
+
+.header__back-btn{
+    cursor: pointer;
 }

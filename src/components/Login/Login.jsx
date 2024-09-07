@@ -16,10 +16,12 @@ const LoginPage = ({ setIsAuthenticated }) => {
       const response = await axios.post('http://localhost:5050/users/signin', { username, password });
 
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('firstName', response.data.user.first_name)
-      localStorage.setItem('userId', response.data.user.id)
+      localStorage.setItem('firstName', response.data.user.first_name);
+      localStorage.setItem('userId', response.data.user.id);
       setIsAuthenticated(true);
 
+      // Force a page reload to fetch new user data
+      window.location.reload();
     } catch (err) {
       setError(err.response.data.error || 'An error occurred during login.');
     }
@@ -27,15 +29,14 @@ const LoginPage = ({ setIsAuthenticated }) => {
 
   return (
     <div className="login">
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: 'red', marginLeft: '32px' }}>{error}</p>}
       <form onSubmit={handleLogin} className="login__form">
         <div className="login__subcontainer">
           <label htmlFor="username" className="login__label">Username</label>
           <input
-            type="username"
+            type="text"
             id="username"
             className="login__input login__input--line"
-            placeholder=""
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -44,7 +45,6 @@ const LoginPage = ({ setIsAuthenticated }) => {
             type="password"
             id="password"
             className="login__input login__input--line"
-            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

@@ -41,6 +41,7 @@
     &__edit-icon{
         width: 18px;
         height: 18px;
+        cursor: pointer;
     }
 
     &__input{
@@ -50,6 +51,7 @@
         border-top: none;
         border-left: none;
         border-right: none;
+        cursor: pointer;
     }
 
     &__save-btn{
@@ -62,6 +64,7 @@
         padding: 10px;
         font-family: 'Inter';
         border: none;
+        cursor: pointer;
     }
 }
 

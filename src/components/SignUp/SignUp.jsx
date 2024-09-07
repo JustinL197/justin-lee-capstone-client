@@ -1,8 +1,6 @@
 import './SignUp.scss';
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import axios from 'axios';
 
 function SignUp({ setIsAuthenticated }) {
@@ -16,7 +14,6 @@ function SignUp({ setIsAuthenticated }) {
   });
 
   const [errors, setErrors] = useState({});
-
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -106,6 +103,15 @@ function SignUp({ setIsAuthenticated }) {
           {errors.role_id && <span className="error-message">{errors.role_id}</span>}
 
           <button type="submit" className="signup__button">Sign Up</button>
+
+          {/* New Login Button */}
+          <button 
+            type="button" 
+            className="signup__button signup__button--login" 
+            onClick={() => navigate('/login')}
+          >
+            Already have an account? Log In
+          </button>
           </div>
         </form>
     </div>
