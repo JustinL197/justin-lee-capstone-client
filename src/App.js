@@ -1,4 +1,3 @@
-// src/App.js
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
@@ -9,6 +8,8 @@ import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
 import ProtectedRoute from './components/ProtectedRoutes/ProtectedRoutes';
 import Dashboard from './pages/Dashboard/Dashboard';
+import Discussions from './components/Discussions/Discussions';
+import DiscussionDetail from './components/DiscussionDetail/DiscussionDetail';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,10 +17,10 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const storedFirstName = localStorage.getItem('firstName')
+    const storedFirstName = localStorage.getItem('firstName');
     if (token) {
       setIsAuthenticated(true);
-      if (storedFirstName){
+      if (storedFirstName) {
         setFirstName(storedFirstName);
       }
     }
@@ -27,7 +28,7 @@ function App() {
 
   return (
     <Router>
-      <Header isAuthenticated={isAuthenticated} firstName={firstName}/>
+      <Header isAuthenticated={isAuthenticated} firstName={firstName} />
       <Routes>
         <Route
           path="/"
@@ -53,8 +54,12 @@ function App() {
 
         {/* Use ProtectedRoute component */}
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-          <Route path="/dashboard/*" element={<Dashboard setIsAuthenticated={setIsAuthenticated}/>} />
+          <Route path="/dashboard/*" element={<Dashboard setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="/discussions" element={<Discussions />} />
+          <Route path="/discussions/:id" element={<DiscussionDetail />} /> {/* Ensure protected discussion details */}
         </Route>
+        
+        {/* Fallback to login for unknown routes */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>

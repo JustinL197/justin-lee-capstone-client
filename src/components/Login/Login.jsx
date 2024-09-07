@@ -17,6 +17,7 @@ const LoginPage = ({ setIsAuthenticated }) => {
 
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('firstName', response.data.user.first_name)
+      localStorage.setItem('userId', response.data.user.id)
       setIsAuthenticated(true);
 
     } catch (err) {

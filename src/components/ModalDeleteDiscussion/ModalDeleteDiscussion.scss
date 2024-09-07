@@ -1,0 +1,51 @@
+// src/components/ModalConfirmDelete/ModalConfirmDelete.scss
+.delete-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .delete-modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    width: 75%;
+    text-align: center;
+  }
+  
+  .delete-modal__close-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .delete-modal__actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    border-radius: 20px;
+  }
+  
+  .delete-modal__button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .delete-modal__button--cancel {
+    background-color: #ccc;
+  }
+  
+  .delete-modal__button--confirm {
+    background-color: #ff4d4f;
+    color: white;
+  }
