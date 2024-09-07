@@ -1,0 +1,107 @@
+.header{
+    background: linear-gradient(180deg, #3f71ef 0%, #94d8e3 100%);
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 32px;
+
+    &--unauthenticated{
+        height: 25vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    &--authenticated{
+        height: 32vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 0;
+    }   
+    
+
+    &__logo{
+        width: 300px;
+        margin-left: -85px;
+        margin-bottom: 50px;
+    }
+
+    &__sub-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__profile-section-container{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+
+    }
+
+    &__icons-container{
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    &__avatar{
+        background-color: grey;
+        border-radius: 50%;
+        height: 64px;
+        width: 64px;
+    }
+    
+    &__greeting-message{
+        font-size: 20px;
+        margin: 0;
+        color: white;
+        font-weight: 700;
+    }
+}
+
+.header__profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.header__profile-title{
+    font-size: 20px;
+    color: white;
+}
+
+.header__profile-subcontainer{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.header__avatar-image {
+    width: 150px;
+    height: 150px;
+    background-color: #ccc; // Placeholder for avatar image
+    border-radius: 50%;
+    }
+  
+.header__edit-avatar-btn {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+.header__edit-avatar-icon {
+width: 20px;
+height: 20px;
+margin-right: 5px;
+}

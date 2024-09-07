@@ -1,0 +1,26 @@
+@use '../../styles/partials/mixin' as mixin;
+@use '../../styles/partials/typography' as font;
+
+
+.modal__textarea{
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.save-changes-button{
+    background-color: #007bff;
+      color: white; 
+      border: none; 
+      padding: 10px 15px; 
+      border-radius: 20px; 
+      cursor: pointer; 
+      font-size: 14px; 
+      font-family: "Inter", sans-serif;
+      width: auto;
+      align-self: flex-end;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+}
