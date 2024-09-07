@@ -1,0 +1,96 @@
+.discussion-detail{
+    display: flex;
+    flex-direction: column;
+    margin-top: -32px;
+    background-color: white;
+    border-radius: 20px;
+
+
+    &__subcontainer{
+        display: flex;
+        flex-direction: column;
+        margin: 32px;
+    }
+    &__username-timestamp-back-container{
+        display: flex;
+        gap: 8px;
+    }
+    &__username-timestamp-container{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 16px;
+    }
+
+    &__username{
+        margin: 0;
+        font-size: 12px;
+    }
+
+    &__timestamp{
+        margin: 0;
+        font-size: 12px;
+    }
+
+    &__title{
+        font-size: 18px;
+        margin: 0;
+    }
+
+    &__likes-comments-container{
+        display: flex;
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    &__likes{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #C8c8c8;
+        border-radius: 20px;
+        padding: 4px;
+        gap: 6px;
+        width: 48px;
+    }
+
+    &__likes-count{
+        font-size: 14px;
+    }
+
+    &__comments{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #C8c8c8;
+        border-radius: 20px;
+        padding: 4px;
+        gap: 6px;
+        width: 48px;
+    }
+
+    &__comments-count{
+        font-size: 14px;
+    }
+
+    &__content{
+        font-size: 14px;
+    }
+}
+
+.discussion-detail__back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .back-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+.delete-button{
+    margin-left: auto;
+    width: 24px;
+    height: 24px;
+}
