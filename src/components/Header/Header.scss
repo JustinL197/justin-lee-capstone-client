@@ -58,3 +58,50 @@
         font-weight: 700;
     }
 }
+
+.header__profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.header__profile-title{
+    font-size: 20px;
+    color: white;
+}
+
+.header__profile-subcontainer{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.header__avatar-image {
+    width: 150px;
+    height: 150px;
+    background-color: #ccc; // Placeholder for avatar image
+    border-radius: 50%;
+    }
+  
+.header__edit-avatar-btn {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+.header__edit-avatar-icon {
+width: 20px;
+height: 20px;
+margin-right: 5px;
+}
