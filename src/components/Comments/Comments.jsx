@@ -3,13 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import deleteIcon from '../../assets/icons/delete.svg';
+import DeleteModal from '../ModalDeleteConfirm/ModalDeleteConfirm';
 
 const Comments = ({ incrementCommentCount, decrementCommentCount }) => {
   const { id: discussionId } = useParams();
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [error, setError] = useState(null);
-  const [isFocused, setIsFocused] = useState(false); // Reintroducing isFocused state
+  const [isFocused, setIsFocused] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal state
+  const [commentToDelete, setCommentToDelete] = useState(null); // Track comment to delete
   const userId = parseInt(localStorage.getItem('userId'));
 
   useEffect(() => {
@@ -33,7 +36,6 @@ const Comments = ({ incrementCommentCount, decrementCommentCount }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Prevent form submission if there's no comment
     if (!newComment.trim()) return;
 
     try {
@@ -49,8 +51,8 @@ const Comments = ({ incrementCommentCount, decrementCommentCount }) => {
       );
 
       setComments((prevComments) => [...prevComments, { ...response.data, isLiked: false }]);
-      setNewComment('');  // Clear the input field
-      setIsFocused(false); // Collapse the textarea after submission
+      setNewComment('');
+      setIsFocused(false);
       incrementCommentCount();
     } catch (error) {
       setError('Failed to post comment');
@@ -82,12 +84,11 @@ const Comments = ({ incrementCommentCount, decrementCommentCount }) => {
     }
   };
 
-  const handleDelete = async (commentId, discussionId) => {
-    const confirmed = window.confirm('Are you sure you want to delete this comment?');
-    if (confirmed) {
+  const handleDelete = async () => {
+    if (commentToDelete) {
       try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:5050/discussions/comments/${commentId}`, {
+        await axios.delete(`http://localhost:5050/discussions/comments/${commentToDelete}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -96,17 +97,19 @@ const Comments = ({ incrementCommentCount, decrementCommentCount }) => {
           },
         });
 
-        setComments((prevComments) => prevComments.filter((comment) => comment.id !== commentId));
+        setComments((prevComments) => prevComments.filter((comment) => comment.id !== commentToDelete));
         decrementCommentCount();
+        setIsModalOpen(false); // Close modal after deletion
+        setCommentToDelete(null);
       } catch (error) {
         setError('Failed to delete comment');
       }
     }
   };
 
-  const handleCancel = () => {
-    setNewComment(''); // Clear the input
-    setIsFocused(false); // Collapse the textarea on cancel
+  const openDeleteModal = (commentId) => {
+    setCommentToDelete(commentId);
+    setIsModalOpen(true);
   };
 
   return (
@@ -117,20 +120,20 @@ const Comments = ({ incrementCommentCount, decrementCommentCount }) => {
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             onInput={(e) => {
-              e.target.style.height = 'auto'; // Reset the height to auto
-              e.target.style.height = `${e.target.scrollHeight}px`; // Set it to scrollHeight
+              e.target.style.height = 'auto';
+              e.target.style.height = `${e.target.scrollHeight}px`;
             }}
             placeholder="Add your comment..."
             required
             className="comments-form__inputbox"
-            onFocus={() => setIsFocused(true)} // Expand textarea on focus
-            onBlur={() => !newComment && setIsFocused(false)} // Collapse if no input
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => !newComment && setIsFocused(false)}
           ></textarea>
         </div>
         {isFocused && (
           <div className="comments-form__actions-outside">
             <button type="submit" className="comments-form__submit">Post</button>
-            <button type="button" onClick={handleCancel} className="comments-form__cancel">Cancel</button>
+            <button type="button" onClick={() => setIsFocused(false)} className="comments-form__cancel">Cancel</button>
           </div>
         )}
       </form>
@@ -161,7 +164,7 @@ const Comments = ({ incrementCommentCount, decrementCommentCount }) => {
               {comment.user_id === userId && (
                 <img
                   src={deleteIcon}
-                  onClick={() => handleDelete(comment.id, discussionId)}
+                  onClick={() => openDeleteModal(comment.id)} // Open modal instead of alert
                   style={{ cursor: 'pointer' }}
                 />
               )}
@@ -169,6 +172,13 @@ const Comments = ({ incrementCommentCount, decrementCommentCount }) => {
           </div>
         ))}
       </div>
+
+      {/* Render the modal */}
+      <DeleteModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onConfirm={handleDelete} 
+      />
     </div>
   );
 };

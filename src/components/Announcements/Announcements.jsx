@@ -140,7 +140,7 @@ const Announcements = () => {
         <AnnouncementCard 
           key={announcement.id} 
           announcement={announcement} 
-          onClick={() => handleCardClick(announcement)} // Add click handler
+          onClick={() => handleCardClick(announcement)}
         />
       ))}
 
