@@ -1,7 +1,21 @@
+@use '../../styles/partials/mixin' as mixin;
+@use '../../styles/partials/typography' as font;
+
+.comments-section{
+  @include mixin.desktop{
+    margin-left: 300px;
+    margin-right: 300px;
+  }
+}
+
 .comments-form {
     display: flex;
     flex-direction: column;
     margin: 0 32px;
+
+    @include mixin.desktop{
+      margin: 0;
+    }
 }
 
 .comments-form__wrapper {
@@ -54,6 +68,10 @@
     border: 1px solid #ccc;
     border-radius: 20px;
     padding: 6px 12px;
+
+    @include mixin.desktop{
+      margin: 16px 0;
+    }
   
     &__header {
       display: flex;

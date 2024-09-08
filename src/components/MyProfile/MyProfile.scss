@@ -1,3 +1,6 @@
+@use '../../styles/partials/mixin' as mixin;
+@use '../../styles/partials/typography' as font;
+
 .my-profile{
     display: flex;
     flex-direction: column;
@@ -7,6 +10,11 @@
     flex-direction: column;
     justify-content: center;
     padding: 32px;
+
+    @include mixin.desktop{
+        padding-left: 600px;
+        padding-right: 600px;
+    }
     
     &__header{
         font-size: 16px;
